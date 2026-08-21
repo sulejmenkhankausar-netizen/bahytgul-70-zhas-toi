@@ -1,0 +1,871 @@
+DOCTYPE html>
+<html lang="kk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+    <title>Бахытгүл Анамыздың 70 Жас Мерейтойына Шақыру</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#FFF8E7',
+                            200: '#F7E7B4',
+                            300: '#EBD080',
+                            400: '#E0B84C',
+                            500: '#D4AF37', /* Primary Gold */
+                            600: '#B58E29',
+                            700: '#8C6B1B',
+                        },
+                        cream: {
+                            50: '#FFFCF9',
+                            100: '#FAF6F0',
+                            200: '#F5EBE1',
+                            300: '#EAD7C5',
+                        }
+                    },
+                    fontFamily: {
+                        script: ['Great Vibes', 'cursive'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                        heading: ['Cinzel', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    animation: {
+                        'float-slow': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                        'spin-slow': 'spin 20s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-12px) rotate(3deg)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
+                            '50%': { opacity: '1', transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #B58E29 0%, #F7E7B4 40%, #D4AF37 70%, #8C6B1B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 252, 249, 0.88);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 35px -5px rgba(181, 142, 41, 0.12);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #petalCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-cream-100 text-gray-800 font-sans antialiased selection:bg-gold-200 selection:text-gold-700 overflow-x-hidden">
+
+    <!-- Canvas for Floating Gold Petals -->
+   
+<audio id="backgroundMusic" loop>
+    <source src="music/1.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicToggle" onclick="toggleAudio()" class="flex items-center space-x-2 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full border border-gold-300 shadow-lg text-gold-700 hover:scale-105 transition-all duration-300">  
+    <i id="musicIcon" class="fas fa-music text-gold-500 animate-pulse"></i>  
+    <span id="musicStatusText" class="text-xs font-semibold tracking-wider uppercase">Әуенді қосу</span>  
+</button>
+
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-4xl mx-auto min-h-screen relative shadow-2xl bg-cream-50 border-x border-gold-200/50">
+
+        <section class="relative min-h-screen flex flex-col items-center justify-between px-6 py-12 text-center overflow-hidden border-b border-gold-200/60">
+            
+            <div class="w-full flex justify-center items-center pt-4 opacity-80">
+                <svg class="w-48 sm:w-64 h-12 text-gold-500 fill-current" viewBox="0 0 300 50">
+                    <path d="M150 5 C130 25, 110 5, 90 25 C80 15, 70 35, 50 25 C30 15, 20 30, 0 25 C20 35, 30 20, 50 35 C70 20, 80 40, 90 30 C110 50, 130 30, 150 45 C170 30, 190 50, 210 30 C220 40, 230 20, 250 35 C270 20, 280 35, 300 25 C280 30, 270 15, 250 25 C230 35, 220 15, 210 25 C190 5, 170 25, 150 5 Z"/>
+                    <circle cx="150" cy="25" r="5" class="fill-gold-400"/>
+                </svg>
+            </div>
+
+            <div class="my-auto py-6 space-y-4 z-20">
+                <div class="inline-block px-6 py-1.5 rounded-full border border-gold-400/60 bg-gold-100/60 text-gold-700 font-semibold text-xs tracking-widest uppercase mb-2 shadow-sm">
+                    Салтанатты Шақыру
+                </div>
+
+                <h1 class="font-heading text-5xl sm:text-7xl font-extrabold tracking-wider gold-gradient-text drop-shadow-sm">
+                    70 ЖАС
+                </h1>
+
+                <div class="space-y-1">
+                    <p class="font-serif text-3xl sm:text-5xl font-bold text-gray-800 tracking-wide">
+                        БАХЫТГҮЛ АНАМЫЗДЫҢ
+                    </p>
+                    <p class="font-script text-4xl sm:text-6xl text-gold-600 font-normal pt-2">
+                        Мерейтойына Шақыру
+                    </p>
+                </div>
+
+                <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto my-6"></div>
+
+                <p class="font-serif italic text-lg sm:text-xl text-gray-700 max-w-xl mx-auto leading-relaxed px-4">
+                    «Асыл анамыздың 70 жасқа толуына арналған ақ дастарханымыздың қадірлі қонағы болыңыз!»
+                </p>
+            </div>
+
+            <div class="relative w-full max-w-sm my-6 z-20">
+                <div class="absolute -inset-2 bg-gradient-to-r from-gold-300 via-gold-500 to-gold-300 rounded-3xl blur-md opacity-50 animate-pulse-glow"></div>
+                <div class="relative bg-white p-3 rounded-2xl border-2 border-gold-300/80 shadow-2xl">
+                    <div class="overflow-hidden rounded-xl aspect-[4/5] relative group">
+                        <img id="heroPhoto" src="WhatsApp Image 2026-08-20 at 18.56.48.jpeg" 
+                             alt="Бахытгүл Анамыз" 
+                             class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                             onerror="this.src='https://placehold.co/800x1000/FAF6F0/D4AF37?text=%D0%91%D0%B0%D1%85%D1%8B%D1%82%D0%B3%D2%AF%D0%BB+%D0%90%D0%BD%D0%B0';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute bottom-4 left-0 right-0 text-center text-white font-serif text-lg tracking-wider">
+                            Бахытгүл Ана
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6 animate-bounce text-gold-600 flex flex-col items-center">
+                <span class="text-xs tracking-widest uppercase mb-1">Төмен сырғытыңыз</span>
+                <i class="fas fa-chevron-down text-lg"></i>
+            </div>
+        </section>
+
+
+        <section class="py-16 px-6 sm:px-12 text-center bg-cream-100 relative reveal">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-gold-300 relative z-10 shadow-xl">
+                <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-gold-100 border border-gold-400 flex items-center justify-center text-gold-600 text-2xl shadow-inner">
+                    <i class="fas fa-envelope-open-text"></i>
+                </div>
+
+                <h2 class="font-heading text-2xl sm:text-3xl text-gold-700 font-bold mb-6 tracking-wide uppercase">
+                    Шақыру Мәтіні
+                </h2>
+
+                <div class="w-16 h-0.5 bg-gold-400 mx-auto mb-8"></div>
+
+                <div class="space-y-6 text-gray-800 font-serif leading-relaxed text-lg sm:text-2xl">
+                    <p class="font-semibold text-gold-700 text-xl sm:text-2xl">
+                        Құрметті бауырларым, нағашыларым, әпке-жезде, аға-жеңге, іні-келін, жиен-бөлелерім!
+                    </p>
+
+                    <p class="italic text-gray-700 font-serif text-xl sm:text-2xl px-2 sm:px-6">
+                        «Аяулы да асыл анамыз Бахытгүлдің 70 жасқа толуына орай жайылған ақ дастарханымыздың қадірлі қонағы болуға Сіздерді шақырамыз.»
+                    </p>
+                </div>
+
+                <p class="font-script text-3xl sm:text-4xl text-gold-600 mt-8">
+                    Қадамдарыңызға гүл бітсін!
+                </p>
+            </div>
+        </section>
+
+
+        <section class="py-16 px-6 sm:px-10 bg-cream-50 relative reveal">
+            <div class="text-center mb-12">
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold gold-gradient-text tracking-wider uppercase">
+                    Мереке Туралы
+                </h2>
+                <p class="font-serif italic text-gray-600 text-lg mt-2">
+                    Уақыты мен орналасқан мекенжайы
+                </p>
+                <div class="w-20 h-0.5 bg-gold-400 mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="glass-card p-6 rounded-2xl text-center border-t-4 border-t-gold-500 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 mx-auto mb-4 bg-gold-100 rounded-full flex items-center justify-center text-gold-600 text-2xl">
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-gold-700 mb-2">Күні</h3>
+                    <p class="font-serif text-xl font-bold text-gray-800">26 Қыркүйек 2026 жыл</p>
+                    <p class="text-sm text-gray-500 mt-1">Сенбі, сағат 18:00</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl text-center border-t-4 border-t-gold-500 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 mx-auto mb-4 bg-gold-100 rounded-full flex items-center justify-center text-gold-600 text-2xl">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-gold-700 mb-2">Мекенжайы</h3>
+                    <p class="font-serif text-lg font-bold text-gray-800">Алматы қаласы</p>
+                    <p class="text-sm text-gray-600 mt-1">Кульджинский тракт, мкр. Алатау,<br>«Фазенда», уч. 38</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl text-center border-t-4 border-t-gold-500 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 mx-auto mb-4 bg-gold-100 rounded-full flex items-center justify-center text-gold-600 text-2xl">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-gold-700 mb-2">Той Иелері</h3>
+                    <p class="font-serif text-xl font-bold text-gray-800">Анамыздың Ұл-қыздары</p>
+                    <p class="text-sm text-gray-500 mt-1">Той салтанаты</p>
+                </div>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="glass-card rounded-2xl p-6 mb-10 text-center border border-gold-300 max-w-2xl mx-auto shadow-md">
+                <h4 class="font-heading text-gold-700 font-semibold text-base uppercase tracking-wider mb-4">
+                    Мерекеге дейін қалған уақыт:
+                </h4>
+                <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4 text-center">
+                    <div class="bg-white/80 p-3 rounded-xl border border-gold-200 shadow-sm">
+                        <span id="days" class="block font-heading text-2xl sm:text-4xl font-bold text-gold-700">00</span>
+                        <span class="text-xs text-gray-500 uppercase">Күн</span>
+                    </div>
+                    <div class="bg-white/80 p-3 rounded-xl border border-gold-200 shadow-sm">
+                        <span id="hours" class="block font-heading text-2xl sm:text-4xl font-bold text-gold-700">00</span>
+                        <span class="text-xs text-gray-500 uppercase">Сағат</span>
+                    </div>
+                    <div class="bg-white/80 p-3 rounded-xl border border-gold-200 shadow-sm">
+                        <span id="minutes" class="block font-heading text-2xl sm:text-4xl font-bold text-gold-700">00</span>
+                        <span class="text-xs text-gray-500 uppercase">Минут</span>
+                    </div>
+                    <div class="bg-white/80 p-3 rounded-xl border border-gold-200 shadow-sm">
+                        <span id="seconds" class="block font-heading text-2xl sm:text-4xl font-bold text-gold-700">00</span>
+                        <span class="text-xs text-gray-500 uppercase">Секунд</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button onclick="openMapModal()" class="inline-flex items-center space-x-3 bg-gradient-to-r from-gold-500 via-gold-600 to-gold-700 text-white font-semibold px-8 py-4 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300">
+                    <i class="fas fa-map-marked-alt text-xl"></i>
+                    <span class="text-base tracking-wide">Картадан Көру</span>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- PHOTO GALLERY SECTION -->
+        <section class="py-16 px-6 sm:px-10 bg-cream-100 border-t border-gold-200/60 relative reveal">
+            <div class="text-center mb-12">
+                <div class="inline-block px-4 py-1 rounded-full bg-gold-100 text-gold-700 text-xs font-semibold uppercase tracking-wider mb-2 border border-gold-300">
+                    Естелік сәттер
+                </div>
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold gold-gradient-text tracking-wider uppercase">
+                    Фотогалерея
+                </h2>
+                <p class="font-serif italic text-gray-600 text-lg mt-2">
+                    Бахытгүл анамыздың асыл шақтарынан естеліктер
+                </p>
+                <div class="w-20 h-0.5 bg-gold-400 mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                <!-- Photo 1 -->
+                <div onclick="openImageModal('WhatsApp Image 2026-08-20 at 18.56.48.jpeg', 'Бахытгүл Анамыз')" 
+                     class="glass-card p-3 rounded-2xl border border-gold-300 shadow-lg cursor-pointer group hover:-translate-y-2 transition-all duration-300">
+                    <div class="overflow-hidden rounded-xl aspect-[3/4] relative bg-gold-50">
+                        <img src="WhatsApp Image 2026-08-20 at 18.56.48.jpeg" 
+                             alt="Бахытгүл Анамыз" 
+                             class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x800/FAF6F0/D4AF37?text=%D0%91%D0%B0%D1%85%D1%8B%D1%82%D0%B3%D2%AF%D0%BB+%D0%90%D0%BD%D0%B0';">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="w-10 h-10 rounded-full bg-white/80 text-gold-700 flex items-center justify-center text-lg shadow-md">
+                                <i class="fas fa-search-plus"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="font-serif text-center text-sm font-semibold text-gray-800 pt-3">Бахытгүл Анамыз</p>
+                </div>
+
+                <!-- Photo 2 -->
+                <div onclick="openImageModal('WhatsApp Image 2026-08-20 at 18.56.50 (1).jpeg', 'Отбасылық естелік')" 
+                     class="glass-card p-3 rounded-2xl border border-gold-300 shadow-lg cursor-pointer group hover:-translate-y-2 transition-all duration-300">
+                    <div class="overflow-hidden rounded-xl aspect-[3/4] relative bg-gold-50">
+                        <img src="WhatsApp Image 2026-08-20 at 18.56.50 (1).jpeg" 
+                             alt="Отбасылық естелік" 
+                             class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x800/FAF6F0/D4AF37?text=%D0%9E%D1%82%D0%B1%D0%B0%D1%81%D1%8B%D0%BB%D1%8B%D2%A3+%D0%B5%D1%81%D1%82%D0%B5%D0%BB%D1%96%D0%BA';">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="w-10 h-10 rounded-full bg-white/80 text-gold-700 flex items-center justify-center text-lg shadow-md">
+                                <i class="fas fa-search-plus"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="font-serif text-center text-sm font-semibold text-gray-800 pt-3">Отбасылық естелік</p>
+                </div>
+
+                <!-- Photo 3 -->
+                <div onclick="openImageModal('WhatsApp Image 2026-08-20 at 18.56.50.jpeg', 'Мерекелік сәт')" 
+                     class="glass-card p-3 rounded-2xl border border-gold-300 shadow-lg cursor-pointer group hover:-translate-y-2 transition-all duration-300">
+                    <div class="overflow-hidden rounded-xl aspect-[3/4] relative bg-gold-50">
+                        <img src="WhatsApp Image 2026-08-20 at 18.56.50.jpeg" 
+                             alt="Мерекелік сәт" 
+                             class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x800/FAF6F0/D4AF37?text=%D0%9C%D0%B5%D1%80%D0%B5%D0%BA%D0%B5%D0%BB%D1%96%D0%BA+%D1%81%D2%A3%D1%82';">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="w-10 h-10 rounded-full bg-white/80 text-gold-700 flex items-center justify-center text-lg shadow-md">
+                                <i class="fas fa-search-plus"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="font-serif text-center text-sm font-semibold text-gray-800 pt-3">Мерекелік сәт</p>
+                </div>
+
+                <!-- Photo 4 -->
+                <div onclick="openImageModal('WhatsApp Image 2026-08-20 at 18.56.51.jpeg', 'Ақ дастархан басында')" 
+                     class="glass-card p-3 rounded-2xl border border-gold-300 shadow-lg cursor-pointer group hover:-translate-y-2 transition-all duration-300">
+                    <div class="overflow-hidden rounded-xl aspect-[3/4] relative bg-gold-50">
+                        <img src="WhatsApp Image 2026-08-20 at 18.56.51.jpeg" 
+                             alt="Ақ дастархан басында" 
+                             class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x800/FAF6F0/D4AF37?text=%D0%90%D2%A3+%D0%B4%D0%B0%D1%81%D1%82%D0%B0%D1%80%D1%85%D0%B0%D0%BD';">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="w-10 h-10 rounded-full bg-white/80 text-gold-700 flex items-center justify-center text-lg shadow-md">
+                                <i class="fas fa-search-plus"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="font-serif text-center text-sm font-semibold text-gray-800 pt-3">Ақ дастархан басында</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="py-16 px-6 sm:px-10 bg-cream-100 border-t border-gold-200/60 reveal">
+            <div class="max-w-xl mx-auto glass-card p-8 rounded-3xl border border-gold-300 shadow-xl text-center">
+                <div class="w-12 h-12 mx-auto mb-3 bg-gold-100 rounded-full flex items-center justify-center text-gold-600 text-xl">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="font-heading text-2xl font-bold text-gold-700 uppercase tracking-wide">
+                    Тойға Қатысуыңызды Растаңыз
+                </h3>
+                <p class="text-sm font-serif text-gray-600 mt-1 mb-6">
+                    Қадірлі қонақ, келетініңізді алдын ала хабарлауыңызды өтінеміз
+                </p>
+
+                <form id="rsvpForm" onsubmit="handleRSVP(event)" class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-gold-700 mb-1">Аты-жөніңіз</label>
+                        <input type="text" id="guestName" required placeholder="Мысалы: Арман & Айгүл" 
+                               class="w-full px-4 py-3 rounded-xl border border-gold-300 focus:outline-none focus:ring-2 focus:ring-gold-500 bg-white/90 text-gray-800 text-sm">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-gold-700 mb-1">Тойға келесіз бе?</label>
+                        <select id="attendanceStatus" required class="w-full px-4 py-3 rounded-xl border border-gold-300 focus:outline-none focus:ring-2 focus:ring-gold-500 bg-white/90 text-gray-800 text-sm">
+                            <option value="Иә, қуана келемін!">Иә, қуана келемін! ✨</option>
+                            <option value="Жұбайыммен/Отбасыммен келемін">Жұбайыммен/Отбасыммен келемін 👨‍👩‍👧</option>
+                            <option value="Өкінішке орай, келе алмаймын">Өкінішке орай, келе алмаймын 🙏</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-gold-700 mb-1">Ақ тілегіңіз (міндетті емес)</label>
+                        <textarea id="guestWishes" rows="3" placeholder="Бахытгүл анамызға тілегіңізді жазыңыз..." 
+                                  class="w-full px-4 py-3 rounded-xl border border-gold-300 focus:outline-none focus:ring-2 focus:ring-gold-500 bg-white/90 text-gray-800 text-sm"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-white font-semibold py-3.5 rounded-xl shadow-md transition-all duration-300 uppercase tracking-wider text-sm">
+                        Жауапты сақтау
+                    </button>
+                </form>
+
+                <div id="rsvpSuccessMsg" class="hidden mt-4 p-4 bg-green-50 text-green-800 rounded-xl border border-green-200 text-sm font-sans">
+                    ✨ Рахмет! Жауабыңыз сәтті қабылданды!
+                </div>
+            </div>
+        </section>
+
+
+        <section id="guestResponsesSection" class="py-16 px-6 sm:px-10 bg-cream-50 border-t border-gold-200/60 reveal">
+            <div class="text-center mb-8">
+                <div class="inline-block px-4 py-1 rounded-full bg-gold-100 text-gold-700 text-xs font-semibold uppercase tracking-wider mb-2">
+                    Қонақтар Журналы
+                </div>
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold gold-gradient-text tracking-wider uppercase">
+                    Қонақтардың Жауаптары мен Тілектері
+                </h2>
+                <p class="font-serif italic text-gray-600 text-base mt-1">
+                    Мерейтойға жазылған барлық жауаптар мен ақ тілектер
+                </p>
+                <div class="w-20 h-0.5 bg-gold-400 mx-auto mt-4"></div>
+            </div>
+
+            <!-- PIN Protection Card (Requires Code: 2609) -->
+            <div id="guestResponsesLock" class="max-w-md mx-auto glass-card p-6 sm:p-8 rounded-3xl border border-gold-300 text-center shadow-lg my-6">
+                <div class="w-14 h-14 mx-auto mb-4 bg-gold-100 rounded-full border border-gold-300 flex items-center justify-center text-gold-600 text-2xl">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold text-gray-800 mb-2">
+                    Қонақтар тізімін көру
+                </h3>
+                <p class="text-xs text-gray-600 font-serif mb-5">
+                    Кімнің келетінін немесе келе алмайтынын көру үшін құпия кодты енгізіңіз:
+                </p>
+                <form onsubmit="unlockGuestResponses(event)" class="space-y-3">
+                    <div>
+                        <input type="password" id="guestPinInput" maxlength="10" placeholder="Құпия кодты енгізіңіз" required 
+                               class="w-full text-center tracking-widest text-lg font-bold px-4 py-2.5 rounded-xl border border-gold-300 focus:ring-2 focus:ring-gold-500 focus:outline-none bg-white">
+                        <p id="guestPinErrorMsg" class="text-rose-600 text-xs mt-2 hidden font-semibold">⚠️ Код қате! Тексеріп қайта енгізіңіз.</p>
+                    </div>
+                    <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-white font-semibold py-3 rounded-xl shadow-md transition-all text-xs uppercase tracking-wider">
+                        Тізімді ашу
+                    </button>
+                </form>
+            </div>
+
+            <!-- Guest Responses Content (Hidden until password 2609 is entered) -->
+            <div id="guestResponsesContent" class="hidden">
+                <!-- Response Statistics Badges -->
+                <div class="grid grid-cols-3 gap-3 sm:gap-6 max-w-2xl mx-auto mb-8 text-center">
+                    <div class="glass-card p-4 rounded-2xl border border-gold-300">
+                        <span id="statTotal" class="block font-heading text-2xl sm:text-3xl font-bold text-gold-700">0</span>
+                        <span class="text-[11px] sm:text-xs text-gray-500 uppercase font-semibold">Жалпы жауап</span>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl border border-emerald-300 bg-emerald-50/30">
+                        <span id="statYes" class="block font-heading text-2xl sm:text-3xl font-bold text-emerald-600">0</span>
+                        <span class="text-[11px] sm:text-xs text-emerald-700 uppercase font-semibold">Келетіндер</span>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl border border-rose-300 bg-rose-50/30">
+                        <span id="statNo" class="block font-heading text-2xl sm:text-3xl font-bold text-rose-600">0</span>
+                        <span class="text-[11px] sm:text-xs text-rose-700 uppercase font-semibold">Келе алмайды</span>
+                    </div>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex justify-center space-x-2 sm:space-x-3 mb-8">
+                    <button onclick="filterGuestList('ALL')" id="filterBtnALL" class="px-4 py-2 rounded-xl text-xs font-semibold uppercase transition-all bg-gold-500 text-white shadow-md">
+                        Барлығы
+                    </button>
+                    <button onclick="filterGuestList('YES')" id="filterBtnYES" class="px-4 py-2 rounded-xl text-xs font-semibold uppercase transition-all bg-white border border-gold-300 text-gray-700 hover:bg-gold-50">
+                        Келетіндер
+                    </button>
+                    <button onclick="filterGuestList('NO')" id="filterBtnNO" class="px-4 py-2 rounded-xl text-xs font-semibold uppercase transition-all bg-white border border-gold-300 text-gray-700 hover:bg-gold-50">
+                        Келе алмайтындар
+                    </button>
+                </div>
+
+                <!-- Guest Responses Cards Container -->
+                <div id="publicGuestList" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                    <div class="col-span-full text-center py-12 text-gray-400 font-serif">
+                        <i class="fas fa-spinner fa-spin text-2xl text-gold-500 mb-2"></i>
+                        <p>Қонақтар жауаптары жүктелуде...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="py-16 px-6 text-center bg-cream-100 relative overflow-hidden border-t border-gold-300/60 reveal">
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div class="w-16 h-16 mx-auto bg-gradient-to-tr from-gold-100 to-gold-200 rounded-full flex items-center justify-center border border-gold-400 shadow-md">
+                    <i class="fas fa-heart text-gold-600 text-2xl"></i>
+                </div>
+
+                <h2 class="font-heading text-2xl sm:text-3xl font-extrabold gold-gradient-text leading-tight uppercase">
+                    Сіздерді ақ дастарханымыздың қадірлі қонағы болуға асыға күтеміз!
+                </h2>
+
+                <div class="space-y-1 font-serif">
+                    <p class="text-lg italic text-gray-700">Ізгі ниетпен,</p>
+                    <p class="text-2xl font-bold text-gold-700">Бахытгүл апаның ұл-қыздары ❤️</p>
+                </div>
+            </div>
+
+            <footer class="mt-12 pt-8 border-t border-gold-300/50 text-center">
+                <p class="text-[11px] text-gold-700 tracking-widest uppercase">
+                    Бахытгүл Ананың 70 Жас Мерейтойы © 2026
+                </p>
+            </footer>
+        </section>
+
+    </div>
+
+
+    <div id="mapModal" class="fixed inset-0 z-50 bg-black/70 hidden backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xl rounded-3xl overflow-hidden shadow-2xl border-2 border-gold-400 flex flex-col">
+            <div class="bg-cream-100 p-4 border-b border-gold-200 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-map-marked-alt text-gold-600 text-xl"></i>
+                    <h3 class="font-heading font-bold text-gray-800">Той Өтетін Мекенжай</h3>
+                </div>
+                <button onclick="closeMapModal()" class="text-gray-500 hover:text-gold-600 text-2xl font-bold px-2">&times;</button>
+            </div>
+            <div class="p-6 text-center space-y-4">
+                <p class="font-serif text-xl font-bold text-gray-800">«Фазенда» мейрамхана кешені</p>
+                <p class="text-sm text-gray-600">📍 Алматы қаласы, Кульджинский тракт, мкр. Алатау, уч. 38</p>
+
+                <div class="flex flex-wrap justify-center gap-3 pt-4">
+                    <a href="https://2gis.kz/almaty/search/%D0%9A%D1%83%D0%BB%D1%8C%D0%B4%D0%B6%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D1%82%D1%80%D0%B0%D0%BA%D1%82%20%D0%A4%D0%B0%D0%B7%D0%B5%D0%BD%D0%B4%D0%B0" target="_blank" 
+                       class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold flex items-center space-x-2 shadow">
+                        <i class="fas fa-location-arrow"></i>
+                        <span>2GIS арқылы ашу</span>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Fazenda+Almaty+Kuldzhinsky" target="_blank" 
+                       class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold flex items-center space-x-2 shadow">
+                        <i class="fab fa-google"></i>
+                        <span>Google Maps ашу</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PHOTO LIGHTBOX MODAL -->
+    <div id="imageModal" class="fixed inset-0 z-50 bg-black/90 hidden backdrop-blur-md flex items-center justify-center p-4" onclick="closeImageModal()">
+        <div class="relative max-w-3xl w-full flex flex-col items-center justify-center" onclick="event.stopPropagation()">
+            <button onclick="closeImageModal()" class="absolute -top-10 right-0 text-white text-3xl font-bold hover:text-gold-300 transition-colors">&times;</button>
+            <img id="modalImg" src="" alt="Сурет" class="max-h-[80vh] w-auto max-w-full rounded-2xl shadow-2xl border-2 border-gold-400 object-contain">
+            <p id="modalCaption" class="text-white font-serif text-lg mt-4 text-center tracking-wide font-semibold"></p>
+        </div>
+    </div>
+
+   
+
+
+
+    <script>
+        let audioCtx = null;
+        let isPlaying = false;
+        let melodyTimer = null;
+
+        let noteIndex = 0;
+        function toggleAudio() {
+            const btnText = document.getElementById('musicStatusText');
+            if (!isPlaying) {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                isPlaying = true;
+                btnText.textContent = "Әуенді тоқтату";
+                playMelody();
+            } else {
+                isPlaying = false;
+                btnText.textContent = "Әуенді қосу";
+                if (melodyTimer) clearTimeout(melodyTimer);
+            }
+        }
+
+        function playMelody() {
+            if (!isPlaying || !audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(melodyNotes[noteIndex % melodyNotes.length], audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.1, audioCtx.currentTime + 0.05);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.8);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.85);
+            noteIndex++;
+            melodyTimer = setTimeout(playMelody, 480);
+        }
+
+        function openMapModal() { document.getElementById('mapModal').classList.remove('hidden'); }
+        function closeMapModal() { document.getElementById('mapModal').classList.add('hidden'); }
+
+        function openImageModal(src, title) {
+            document.getElementById('modalImg').src = src;
+            document.getElementById('modalCaption').textContent = title;
+            document.getElementById('imageModal').classList.remove('hidden');
+        }
+        function closeImageModal() {
+            document.getElementById('imageModal').classList.add('hidden');
+        }
+
+        function updateCountdown() {
+            const target = new Date('September 26, 2026 18:00:00').getTime();
+            const diff = target - new Date().getTime();
+            if (diff > 0) {
+                document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Reveal animations
+        document.addEventListener('DOMContentLoaded', function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+        });
+
+        // Petals Animation
+        window.onload = function() {
+            const canvas = document.getElementById('petalCanvas');
+            const ctx = canvas.getContext('2d');
+            function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            resize();
+            window.addEventListener('resize', resize);
+            const petals = Array.from({length: 18}, () => ({
+                x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                size: Math.random() * 5 + 3, speedY: Math.random() * 0.8 + 0.3,
+                speedX: Math.random() * 0.4 - 0.2, opacity: Math.random() * 0.5 + 0.2
+            }));
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                petals.forEach(p => {
+                    p.y += p.speedY; p.x += Math.sin(p.y * 0.01) * p.speedX;
+                    if (p.y > canvas.height) { p.y = -10; p.x = Math.random() * canvas.width; }
+                    ctx.fillStyle = `rgba(212, 175, 55, ${p.opacity})`;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        };
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'bakhytgul-70-jubilee';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "demo", authDomain: "demo.firebaseapp.com", projectId: "demo"
+        };
+
+        let db = null;
+        let currentUser = null;
+        let guestResponses = [];
+        let currentFilter = 'ALL';
+        const GUEST_PASSCODE = "2609";
+
+        window.unlockGuestResponses = function(event) {
+            event.preventDefault();
+            const inputVal = document.getElementById('guestPinInput').value.trim();
+            const errorMsg = document.getElementById('guestPinErrorMsg');
+            if (inputVal === GUEST_PASSCODE) {
+                sessionStorage.setItem('guest_list_auth', 'true');
+                checkGuestAuth();
+            } else {
+                errorMsg.classList.remove('hidden');
+            }
+        };
+
+        function checkGuestAuth() {
+            if (sessionStorage.getItem('guest_list_auth') === 'true') {
+                const lockElem = document.getElementById('guestResponsesLock');
+                const contentElem = document.getElementById('guestResponsesContent');
+                if (lockElem) lockElem.classList.add('hidden');
+                if (contentElem) contentElem.classList.remove('hidden');
+                renderGuestList();
+            }
+        }
+
+        async function initFirebase() {
+            checkGuestAuth();
+            try {
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                db = getFirestore(app);
+
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    const userCred = await signInWithCustomToken(auth, __initial_auth_token);
+                    currentUser = userCred.user;
+                } else {
+                    const userCred = await signInAnonymously(auth);
+                    currentUser = userCred.user;
+                }
+
+                // Listen to live updates from Firebase
+                const rsvpCol = collection(db, 'artifacts', appId, 'public', 'data', 'rsvps');
+                onSnapshot(rsvpCol, (snapshot) => {
+                    const remoteList = [];
+                    snapshot.forEach((doc) => {
+                        remoteList.push({ id: doc.id, ...doc.data() });
+                    });
+                    if (remoteList.length > 0) {
+                        guestResponses = remoteList;
+                        renderGuestList();
+                    }
+                }, (err) => {
+                    console.warn("Firestore listener fallback to localStorage", err);
+                });
+
+            } catch (e) {
+                console.warn("Firebase initialized in standalone mode", e);
+            }
+
+            // Always load local storage backup
+            if (guestResponses.length === 0) {
+                try {
+                    guestResponses = JSON.parse(localStorage.getItem('jubilee_rsvps') || '[]');
+                } catch(e) { guestResponses = []; }
+                renderGuestList();
+            }
+        }
+        initFirebase();
+
+        window.handleRSVP = async function(event) {
+            event.preventDefault();
+            const name = document.getElementById('guestName').value.trim();
+            const status = document.getElementById('attendanceStatus').value;
+            const wishes = document.getElementById('guestWishes').value.trim();
+            
+            const newRsvp = {
+                id: 'rsvp_' + Date.now(),
+                name,
+                status,
+                wishes,
+                dateStr: new Date().toLocaleDateString('kk-KZ', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+            };
+
+            // Save locally
+            try {
+                const localData = JSON.parse(localStorage.getItem('jubilee_rsvps') || '[]');
+                localData.unshift(newRsvp);
+                localStorage.setItem('jubilee_rsvps', JSON.stringify(localData));
+            } catch (e) {}
+
+            guestResponses.unshift(newRsvp);
+            renderGuestList();
+
+            // Save to Firestore if available
+            if (db) {
+                try {
+                    const rsvpCol = collection(db, 'artifacts', appId, 'public', 'data', 'rsvps');
+                    await addDoc(rsvpCol, {
+                        name,
+                        status,
+                        wishes,
+                        createdAt: serverTimestamp(),
+                        dateStr: newRsvp.dateStr
+                    });
+                } catch (err) {
+                    console.error("Firestore save error:", err);
+                }
+            }
+
+            document.getElementById('rsvpForm').reset();
+            const msg = document.getElementById('rsvpSuccessMsg');
+            msg.innerHTML = `✨ Рахмет, <strong>${name}</strong>! Жауабыңыз тізімге қосылды!`;
+            msg.classList.remove('hidden');
+            setTimeout(() => msg.classList.add('hidden'), 5000);
+
+            // Scroll down to responses
+            document.getElementById('guestResponsesSection').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        window.filterGuestList = function(type) {
+            currentFilter = type;
+            ['ALL', 'YES', 'NO'].forEach(t => {
+                const btn = document.getElementById(`filterBtn${t}`);
+                if (t === type) {
+                    btn.className = 'px-4 py-2 rounded-xl text-xs font-semibold uppercase transition-all bg-gold-500 text-white shadow-md';
+                } else {
+                    btn.className = 'px-4 py-2 rounded-xl text-xs font-semibold uppercase transition-all bg-white border border-gold-300 text-gray-700 hover:bg-gold-50';
+                }
+            });
+            renderGuestList();
+        };
+
+        function renderGuestList() {
+            const container = document.getElementById('publicGuestList');
+            if (!container) return;
+
+            const totalCount = guestResponses.length;
+            const yesCount = guestResponses.filter(r => r.status && r.status.includes('келемін')).length;
+            const noCount = totalCount - yesCount;
+
+            document.getElementById('statTotal').textContent = totalCount;
+            document.getElementById('statYes').textContent = yesCount;
+            document.getElementById('statNo').textContent = noCount;
+
+            let filtered = guestResponses;
+            if (currentFilter === 'YES') {
+                filtered = guestResponses.filter(r => r.status && r.status.includes('келемін'));
+            } else if (currentFilter === 'NO') {
+                filtered = guestResponses.filter(r => !r.status || !r.status.includes('келемін'));
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-10 bg-white/60 rounded-2xl border border-gold-200">
+                        <i class="far fa-paper-plane text-3xl text-gold-400 mb-2"></i>
+                        <p class="font-serif text-gray-600">Әлі жауаптар тіркелмеді. Алғашқы болып жауап қалдырыңыз!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(item => {
+                const isComing = item.status && item.status.includes('келемін');
+                const badgeClass = isComing 
+                    ? 'bg-emerald-100 text-emerald-800 border-emerald-300' 
+                    : 'bg-rose-100 text-rose-800 border-rose-300';
+                
+                const icon = isComing ? 'fa-circle-check text-emerald-600' : 'fa-circle-xmark text-rose-500';
+
+                return `
+                    <div class="glass-card p-5 rounded-2xl border border-gold-300 hover:shadow-lg transition-all flex flex-col justify-between space-y-3">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas ${icon} text-lg"></i>
+                                    <h4 class="font-bold text-gray-800 text-base font-sans">${escapeHtml(item.name)}</h4>
+                                </div>
+                                <span class="text-[10px] text-gray-400 font-sans">${item.dateStr || ''}</span>
+                            </div>
+                            <span class="inline-block px-3 py-1 text-[11px] font-semibold rounded-full border ${badgeClass} mb-2">
+                                ${escapeHtml(item.status)}
+                            </span>
+                            ${item.wishes ? `
+                                <p class="text-xs text-gray-700 italic font-serif bg-gold-100/50 p-3 rounded-xl border border-gold-200/60 mt-1">
+                                    «${escapeHtml(item.wishes)}»
+                                </p>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+    </script>
+
+
+</body>
+</html>
